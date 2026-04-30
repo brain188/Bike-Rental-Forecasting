@@ -1,0 +1,15 @@
+version: 1.0
+runtime: docker
+build:
+  commands:
+    build:
+      - echo "Building the application"
+run:
+  runtime-version: latest
+  command: python entrypoints/app_ui.py
+  network:
+    port: 8050
+    env: PORT
+  env:
+    - name: PORT
+      value: "8050"
