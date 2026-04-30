@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: bike-rental-forecasting
+    runtime: docker
+    dockerfilePath: ./Dockerfile.railway
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: 8050
+    autoDeploy: false
