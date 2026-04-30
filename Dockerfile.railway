@@ -25,10 +25,11 @@ COPY data ./data
 # Install dependencies
 RUN uv sync --no-dev --frozen
 
+# Train the model during build
+RUN python entrypoints/training.py
+
 # Expose UI port
 EXPOSE 8050
 
-# Create startup script that runs training then UI
-RUN echo '#!/bin/bash\npython entrypoints/training.py\npython entrypoints/app_ui.py' > /app/start.sh && chmod +x /app/start.sh
-
-CMD ["/app/start.sh"]
+# Start the web application
+CMD ["python", "entrypoints/app_ui.py"]
