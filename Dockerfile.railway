@@ -29,6 +29,9 @@ RUN uv sync --no-dev --frozen
 EXPOSE 8050
 
 # Create startup script that runs training then UI
-RUN echo '#!/bin/bash\npython entrypoints/training.py\npython entrypoints/app_ui.py' > /app/start.sh && chmod +x /app/start.sh
+RUN printf '#!/bin/sh\n\
+python entrypoints/training.py && \\\n\
+python entrypoints/app_ui.py\n' > /app/start.sh \
+&& chmod +x /app/start.sh
 
 CMD ["/app/start.sh"]
