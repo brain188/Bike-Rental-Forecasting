@@ -16,7 +16,7 @@ feature_engineering:
     humidity: [1, 2, 3] 
 
 training:
-  target_params:
+  target_params: 
     shift_period: 1
     target_column: bike_count
     new_target_name: target
